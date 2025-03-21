@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Paul K.A. & Anticity Records</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+
+    <!-- Global Styles -->
+    <link href="css/site.css" rel="stylesheet" />
+
+    <!-- Blazor CSS Isolation -->
+    <link href="YourAssemblyName.styles.css" rel="stylesheet" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Meta Tags -->
+    <meta name="description" content="Professional music production and licensing by Paul K.A. & Anticity Records." />
+    <meta name="author" content="Paul K.A. & Anticity Records" />
+</head>
+<body>
+    <!-- Blazor App Root --><!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>Paul K.A. & Anticity Records</title>
+
+        <!-- Favicon -->
+        <link rel="icon" href="images/PKALLC.png" type="image/png" />
+
+        <!-- Global Styles -->
+        <link href="css/site.css" rel="stylesheet" />
+
+        <!-- Blazor CSS Isolation -->
+        <link href="YourAssemblyName.styles.css" rel="stylesheet" />
+       
+      
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+        <!-- Meta Tags -->
+        <meta name="description" content="Professional music production and licensing by Paul K.A. & Anticity Records." />
+        <meta name="author" content="Paul K.A. & Anticity Records" />
+    </head>
+    <body>
+        <!-- Blazor App Root -->
+        <div id="app"></div>
+
+        <!-- Loading Screen -->
+        <div id="loading">
+            <p>Loading...</p>
+        </div>
+
+        <!-- Authentication Service -->
+        <script src="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication/AuthenticationService.js"></script>
+
+        <!-- Blazor WebAssembly Script -->
+        <script src="_framework/blazor.webassembly.js"></script>
+
+        <!-- Service Worker Registration -->
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(() => console.log('Service Worker registered'))
+                    .catch(error => console.error('Service Worker registration failed:', error));
+            }
+        </script>
+    </body>
+</html>
+
+<div id="app"></div>
+
+<!-- Loading Screen -->
+<div id="loading">
+    <p>Loading...</p>
+</div>
+
+<!-- Authentication Service -->
+<script src="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication/AuthenticationService.js"></script>
+
+<!-- Blazor WebAssembly Scri

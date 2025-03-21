@@ -1,0 +1,132 @@
+﻿@page "/catalog"
+@layout MainLayout
+
+<div class="catalog-page">
+    <h1>Music Catalog</h1>
+
+    <div class="catalog-filters">
+        <div class="filter-group">
+            <label for="genre-filter">Genre:</label>
+            <select id="genre-filter" @onchange="FilterByGenre">
+                <option value="">All Genres</option>
+                <option value="electronic">Electronic</option>
+                <option value="punk">Punk</option>
+                <option value="rock">Rock</option>
+                <option value="metal">Metal</option>
+                <option value="southern">Southern Rock</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="artist-filter">Artist:</label>
+            <select id="artist-filter" @onchange="FilterByArtist">
+                <option value="">All Artists</option>
+                <option value="paulka">Paul K.A.</option>
+                <option value="saulbefore">Saul Before</option>
+            </select>
+        </div>
+
+        <div class="search-group">
+            <input type="text" placeholder="Search tracks..." @bind="searchTerm" @bind:event="oninput" />
+        </div>
+    </div>
+
+    <div class="catalog-grid">
+        @foreach (var song in filteredSongs)
+        {
+            <div class="song-card">
+                <div class="song-info">
+                    <h3>@song.Title</h3>
+                    <p class="artist">@song.Artist</p>
+                    <p class="genre">@song.Genre</p>
+                </div>
+                <div class="song-controls">
+                    <audio controls>
+                        <source src="@song.PreviewUrl" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <div class="license-options">
+                        <button class="license-button" @onclick="() => NavigateToLicensing(song.Id)">License This Track</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private List<Song> allSongs = new List<Song>();
+    private List<Song> filteredSongs = new List<Song>();
+    private string searchTerm = "";
+    private string selectedGenre = "";
+    private string selectedArtist = "";
+
+    protected override void OnInitialized()
+    {
+        // Sample data - in a real app, this would come from a database
+        allSongs = new List<Song>
+        {
+            new Song { Id = 1, Title = "Electronic Dreams", Artist = "Paul K.A.", Genre = "Electronic", PreviewUrl = "audio/sample1.mp3" },
+            new Song { Id = 2, Title = "Digital Sunset", Artist = "Paul K.A.", Genre = "Electronic", PreviewUrl = "audio/sample2.mp3" },
+            new Song { Id = 3, Title = "Neon Nights", Artist = "Paul K.A.", Genre = "Electronic", PreviewUrl = "audio/sample3.mp3" },
+            new Song { Id = 4, Title = "Punk Revolution", Artist = "Saul Before", Genre = "Punk", PreviewUrl = "audio/sample4.mp3" },
+            new Song { Id = 5, Title = "Southern Comfort", Artist = "Saul Before", Genre = "Southern Rock", PreviewUrl = "audio/sample5.mp3" },
+            new Song { Id = 6, Title = "Metal Mayhem", Artist = "Saul Before", Genre = "Metal", PreviewUrl = "audio/sample6.mp3" }
+        };
+
+        filteredSongs = allSongs;
+    }
+
+    private void FilterByGenre(ChangeEventArgs e)
+    {
+        selectedGenre = e.Value.ToString();
+        ApplyFilters();
+    }
+
+    private void FilterByArtist(ChangeEventArgs e)
+    {
+        selectedArtist = e.Value.ToString();
+        ApplyFilters();
+    }
+
+    private void ApplyFilters()
+    {
+        filteredSongs = allSongs;
+
+        if (!string.IsNullOrEmpty(selectedGenre))
+        {
+            filteredSongs = filteredSongs.Where(s => s.Genre.ToLower() == selectedGenre.ToLower()).ToList();
+        }
+
+        if (!string.IsNullOrEmpty(selectedArtist))
+        {
+            filteredSongs = filteredSongs.Where(s => s.Artist.ToLower().Contains(selectedArtist.ToLower())).ToList();
+        }
+
+        if (!string.IsNullOrEmpty(searchTerm))
+        {
+            filteredSongs = filteredSongs.Where(s =>
+                s.Title.ToLower().Contains(searchTerm.ToLower()) ||
+                s.Artist.ToLower().Contains(searchTerm.ToLower()) ||
+                s.Genre.ToLower().Contains(searchTerm.ToLower())
+            ).ToList();
+        }
+    }
+
+    private void NavigateToLicensing(int songId)
+    {
+        NavigationManager.NavigateTo($"/licensing?songId={songId}");
+    }
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    public class Song
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Artist { get; set; }
+        public string Genre { get; set; }
+        public string PreviewUrl { get; set; }
+    }
+}

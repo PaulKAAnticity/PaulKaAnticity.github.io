@@ -1,0 +1,114 @@
+﻿@page "/"
+
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+@inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<PageTitle>Home</PageTitle>
+
+<h1>Paul KA Music and Anticity Records</h1>
+
+<div class="alert alert-warning" role="alert">
+    Before authentication will function correctly, you must configure your provider details in <code>Program.cs</code>
+</div>
+
+<LayoutView Layout="@typeof(MainLayout)">
+    <div class="home-page">
+        <!-- Hero Section -->
+        <header class="hero-section">
+            <video class="background-video" autoplay muted loop playsinline>
+                <source src="videos/SaulIntro.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <div class="hero-content">
+                <h1>Welcome to Paul K.A. & Anticity Records</h1>
+                <p>Your destination for professional music production and licensing.</p>
+                <button class="cta-button" @onclick="NavigateToCatalog">Explore Our Music Catalog</button>
+            </div>
+        </header>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <h2>About Us</h2>
+            <p>
+                Founded in 2020 during the pandemic, Paul K.A. & Anticity Records is a professional music production and licensing company.
+                With over 250 songs in our catalog, we offer licensing options tailored for Film, Television, Commercials, and especially
+                independent and commercial video game developers.
+            </p>
+        </section>
+
+        <!-- Licensing Section -->
+        <section class="licensing-section">
+            <h2>Music Licensing Made Simple</h2>
+            <p>
+                Choose from three license types to suit your needs:
+            </p>
+            <ul>
+                <li><strong>Standard License:</strong> $149</li>
+                <li><strong>Professional License:</strong> $299</li>
+                <li><strong>Commercial License:</strong> $599</li>
+            </ul>
+            <p>
+                Custom music production and licensing agreements are available upon request.
+            </p>
+        </section>
+
+        <!-- Login/Signup Section -->
+        <section class="auth-section">
+            @if (user?.Identity?.IsAuthenticated == true)
+            {
+                <p>Hello, @user.Identity?.Name!</p>
+                <button class="auth-button" @onclick="Logout">Log out</button>
+            }
+            else
+            {
+                <button class="auth-button" @onclick="NavigateToLogin">Log In</button>
+                <button class="auth-button" @onclick="NavigateToSignup">Sign Up</button>
+            }
+        </section>
+
+        <!-- Footer Call-to-Action -->
+        <footer class="footer-cta">
+            <h3>Ready to License or Create Custom Music?</h3>
+            <button class="cta-button" @onclick="NavigateToLicensing">Get Started</button>
+        </footer>
+    </div>
+</LayoutView>
+
+@code {
+    private ClaimsPrincipal? user;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        user = authState.User;
+    }
+
+    private void NavigateToCatalog()
+    {
+        Navigation.NavigateTo("/catalog");
+    }
+
+    private void NavigateToLicensing()
+    {
+        Navigation.NavigateTo("/licensing");
+    }
+
+    private void NavigateToLogin()
+    {
+        Navigation.NavigateTo($"authentication/login?returnUrl={Navigation.Uri}");
+    }
+
+    private void NavigateToSignup()
+    {
+        Navigation.NavigateTo("/authentication/signup");
+    }
+
+    private void Logout()
+    {
+        Navigation.NavigateTo("authentication/logout", true);
+    }
+}
+

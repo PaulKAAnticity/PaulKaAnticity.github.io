@@ -1,0 +1,104 @@
+﻿@page "/contact"
+@layout MainLayout
+
+<div class="contact-page">
+    <h1>Contact Us</h1>
+
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Get in Touch</h2>
+            <p>
+                Have questions about our music catalog, licensing options, or custom production services?
+                We'd love to hear from you! Fill out the form or use the contact information below.
+            </p>
+
+            <div class="contact-details">
+                <div class="contact-item">
+                    <span class="contact-label">Email:</span>
+                    <span class="contact-value">info@anticityrecords.com</span>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-label">Phone:</span>
+                    <span class="contact-value">(555) 123-4567</span>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-label">Hours:</span>
+                    <span class="contact-value">Monday - Friday: 9am - 5pm EST</span>
+                </div>
+            </div>
+
+            <div class="social-media">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank">Facebook</a> |
+                    <a href="https://twitter.com" target="_blank">Twitter</a> |
+                    <a href="https://instagram.com" target="_blank">Instagram</a> |
+                    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>Send a Message</h2>
+            <form @onsubmit="HandleSubmit">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" @bind="contactForm.Name" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" @bind="contactForm.Email" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" @bind="contactForm.Subject">
+                        <option value="Licensing Question">Licensing Question</option>
+                        <option value="Custom Production">Custom Production</option>
+                        <option value="Technical Support">Technical Support</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" @bind="contactForm.Message" rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+
+            @if (isSubmitted)
+            {
+                <div class="submission-message">
+                    <p>Thank you for your message! We'll get back to you shortly.</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private ContactFormModel contactForm = new ContactFormModel();
+    private bool isSubmitted = false;
+
+    private void HandleSubmit()
+    {
+        // In a real application, this would send the form data to a server
+        // For now, we'll just set isSubmitted to true
+        isSubmitted = true;
+        contactForm = new ContactFormModel();
+    }
+
+    private class ContactFormModel
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Subject { get; set; } = "Licensing Question";
+        public string Message { get; set; }
+    }
+}
+

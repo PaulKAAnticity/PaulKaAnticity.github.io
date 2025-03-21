@@ -1,0 +1,114 @@
+﻿/* General Home Page Styling */
+.home-page {
+    color: #eeeeee; /* Light text for dark background */
+    background-color: #121212; /* Dark background */
+    font-family: 'Roboto', sans-serif; /* Modern font */
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures video covers the section without distortion */
+    z-index: -1; /* Places video behind content */
+    opacity: 0.5; /* Optional: Adjusts video opacity for better text visibility */
+}
+
+.hero-content {
+    position: relative;
+    text-align: center;
+}
+
+    .hero-content h1 {
+        font-size: 3rem; /* Large heading size */
+        margin-bottom: 20px;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+.cta-button {
+    background: linear-gradient(to right, #d73a49, #a64d79); /* Gradient button */
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+    .cta-button:hover {
+        background-color: #d73a49; /* Slightly darker hover effect */
+    
+    }
+
+/* About Section */
+.about-section {
+    padding: 40px 20px;
+}
+
+    .about-section h2 {
+        color: #d73a49; /* Accent color for headings */
+    }
+
+    .about-section p {
+        line-height: 1.6; /* Improves readability */
+    }
+
+/* Licensing Section */
+.licensing-section {
+    padding: 40px 20px;
+}
+
+    .licensing-section h2 {
+        color: #d73a49; /* Accent color for headings */
+    }
+
+    .licensing-section ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+        .licensing-section ul li {
+            margin-bottom: 10px;
+        }
+
+/* Login/Signup Section */
+.auth-section {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.auth-button {
+    background-color: #d73a49; /* Accent color for buttons */
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+}
+
+    .auth-button:hover {
+        background-color: #a64d79; /* Hover effect for buttons */
+    }
+
+/* Footer Call-to-Action Section */
+.footer-cta {
+    text-align: center;
+    padding-top: 30px;
+}
+
+    .footer-cta h3 {
+        margin-bottom: 20px;
+    }

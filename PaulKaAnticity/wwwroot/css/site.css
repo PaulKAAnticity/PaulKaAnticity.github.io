@@ -1,0 +1,183 @@
+﻿/* Global Styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif; /* Modern font for consistency */
+    background-color: #121212; /* Dark mode background */
+    color: #eeeeee; /* Light text for readability */
+}
+
+/* Links */
+a {
+    color: #d73a49; /* Accent color for links */
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline; /* Hover effect for links */
+    }
+
+/* Buttons */
+button {
+    background-color: #d73a49; /* Accent color for buttons */
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+    button:hover {
+        background-color: #a64d79; /* Darker hover effect */
+    }
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures video covers the section without distortion */
+    z-index: -1; /* Places video behind content */
+    opacity: 0.5; /* Adjusts video opacity for better text visibility */
+}
+
+.hero-content {
+    position: relative;
+    text-align: center;
+}
+
+    .hero-content h1 {
+        font-size: 3rem; /* Large heading size */
+        margin-bottom: 20px;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+.cta-button {
+    background: linear-gradient(to right, #d73a49, #a64d79); /* Gradient button */
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+    .cta-button:hover {
+        background-color: #d73a49; /* Slightly darker hover effect */
+    }
+
+/* About Section */
+.about-section {
+    padding: 40px 20px;
+}
+
+    .about-section h2 {
+        color: #d73a49; /* Accent color for headings */
+    }
+
+    .about-section p {
+        line-height: 1.6; /* Improves readability */
+    }
+
+/* Licensing Section */
+.licensing-section {
+    padding: 40px 20px;
+}
+
+    .licensing-section h2 {
+        color: #d73a49; /* Accent color for headings */
+    }
+
+    .licensing-section ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+        .licensing-section ul li {
+            margin-bottom: 10px;
+        }
+
+/* Login/Signup Section */
+.auth-section {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.auth-button {
+    background-color: #d73a49; /* Accent color for buttons */
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+}
+
+    .auth-button:hover {
+        background-color: #a64d79; /* Hover effect for buttons */
+    }
+
+/* Call-to-Action Container */
+.cta-container {
+    text-align: center;
+    padding-top: 30px;
+}
+
+/* Header Styling */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #d73a49, #a64d79); /* Gradient accent color */
+    color: #ffffff;
+}
+
+.site-logo {
+    height: 50px; /* Consistent logo size */
+}
+
+.navigation ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .navigation ul li {
+        display: inline-block;
+        margin-right: 15px;
+    }
+
+        .navigation ul li a {
+            color: #ffffff; /* White text for navigation links */
+        }
+
+            .navigation ul li a:hover {
+                color: #eeeeee; /* Lighter hover effect */
+            }
+
+/* Footer Styling */
+.site-footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #121212; /* Match the dark mode theme */
+}
+
+.social-links a {
+    color: #ffffff; /* White text for social media links */
+}
+
+    .social-links a:hover {
+        text-decoration: underline; /* Hover effect for social media links */
+    }
